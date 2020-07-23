@@ -14,14 +14,14 @@ class AbdelkarimSetupTables extends Migration
     public function up()
     {
         // Create table for accounts
-        Schema::create('accounts', function (Blueprint $table) {
+        /*Schema::create('credit_card', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
 			$table->string('credit_card')->unique();
 			$table->double('credit', 8, 2)->default(0);
 			$table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-        });
+        });*/
 		
         // Create table for airplane models
         Schema::create('airplane_models', function (Blueprint $table) {
@@ -100,6 +100,6 @@ class AbdelkarimSetupTables extends Migration
 		Schema::dropIfExists('airports');
 		Schema::dropIfExists('airplanes');
 		Schema::dropIfExists('airplane_models');
-		Schema::dropIfExists('accounts');
+		//Schema::dropIfExists('credit_card');
     }
 }
