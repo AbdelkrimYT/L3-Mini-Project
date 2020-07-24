@@ -59,6 +59,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $collection->links() }}
             </div>
         </div>
     </div>

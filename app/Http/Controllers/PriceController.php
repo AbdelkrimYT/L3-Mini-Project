@@ -25,7 +25,7 @@ class PriceController extends AdminController
      */
     public function create()
     {
-        return view('admin.prices.create')
+        return view('admin.prices.create');
     }
 
     /**

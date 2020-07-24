@@ -15,6 +15,8 @@ class AirplaneController extends AdminController
     public function index()
     {
         $collection = App\Airplane::all()->toArray();
+        for ($i = 0; $i < sizeof($collection); $i++)
+            $collection[$i]['airplane_model'] = App\AirplaneModel::find($collection[$i]['model_id']);
         return view('admin.airplanes.index', compact("collection"));
     }
 
@@ -25,7 +27,8 @@ class AirplaneController extends AdminController
      */
     public function create()
     {
-        return view('admin.airplanes.create');
+        $collection = App\AirplaneModel::all()->toArray();
+        return view('admin.airplanes.create', compact('collection'));
     }
 
     /**
@@ -64,7 +67,8 @@ class AirplaneController extends AdminController
     public function edit($id)
     {
         $collection = App\Airplane::find($id);
-        return view('admin.airplanes.edit', compact('collection'));
+        $airplane_model_list = App\AirplaneModel::all()->toArray();
+        return view('admin.airplanes.edit', compact('collection', 'airplane_model_list'));
     }
 
     /**

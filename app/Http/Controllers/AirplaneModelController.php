@@ -14,7 +14,8 @@ class AirplaneModelController extends AdminController
      */
     public function index()
     {
-        $collection = App\AirplaneModel::all()->toArray();
+        //$collection = App\AirplaneModel::all()->paginate(1)->toArray();
+        $collection = App\AirplaneModel::paginate(1);
         return view('admin.airplane_models.index', compact('collection'));
     }
 

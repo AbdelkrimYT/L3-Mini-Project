@@ -27,7 +27,7 @@
                         <tr>
                             <th scope="row">{{ $data['id'] }}</th>
                             <th scope="col">{{ $data['name'] }}</th>
-                            <th scope="col">{{ $data['model_id'] }}</th>
+                            <th scope="col">{{ $data['airplane_model']['name'] }}</th>
                             <th scope="col">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
