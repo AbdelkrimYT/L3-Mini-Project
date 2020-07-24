@@ -15,7 +15,7 @@ class AirportController extends AdminController
     public function index()
     {
         $collection = App\Airport::all()->toArray();
-        return view('admin.airports', compact('collection'));
+        return view('admin.airports.index', compact('collection'));
     }
 
     /**
@@ -81,6 +81,7 @@ class AirportController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        App\Airport::find($id)->delete;
+        return redirect()->back();
     }
 }

@@ -1,14 +1,22 @@
 @extends('layouts.admin_ui')
 
 @section('content')
-@include('admin.modals.airplane_model')
+@include('admin.airplane_models.modal')
 <div class="container">
     <div class="">
         <div class="">
             <div class="card">
                 <div class="card-header">
-                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addNewModel">
-                        Add Airplane Model
+                    <button
+                        type="button"
+                        class="btn btn-outline-success"
+                        data-toggle="modal"
+                        data-target="#addNewModel">Add Airplane Model
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        onclick="window.location='{{ route('airplane_models.create') }}'">Creat
                     </button>
                 </div>
                 <table class="table">
@@ -33,10 +41,13 @@
                             <th scope="col">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
-                                        <a href="airplane_model/{{ $data['id'] }}" class="btn btn-info mr-1" role="button">Update</a>
+                                        <a href="{{ route('airplane_models.show', $data['id']) }}" class="btn btn-info mr-1" role="button">Show</a>
                                     </li>
                                     <li class="nav-item">
-                                    <form action="{{ '/' }}" method="post">
+                                        <a href="{{ route('airplane_models.edit', $data['id']) }}" class="btn btn-info mr-1" role="button">Update</a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <form action="{{ route('airplane_models.destroy', $data['id']) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-outline-danger">Delete</button>

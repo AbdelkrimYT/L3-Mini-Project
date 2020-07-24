@@ -15,7 +15,7 @@ class FlightController extends AdminController
     public function index()
     {
         $collection = App\Flight::all()->toArray();
-        return view('admin.flights', compact('collection'));
+        return view('admin.flights.index', compact('collection'));
     }
 
     /**
@@ -81,6 +81,7 @@ class FlightController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        App\Flight::find($id)->delete();
+        return redirect()->back();
     }
 }

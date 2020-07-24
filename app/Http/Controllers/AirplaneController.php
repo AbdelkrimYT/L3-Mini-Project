@@ -15,7 +15,7 @@ class AirplaneController extends AdminController
     public function index()
     {
         $collection = App\Airplane::all()->toArray();
-        return view('admin.airplanes', compact("collection"));
+        return view('admin.airplanes.index', compact("collection"));
     }
 
     /**
@@ -25,7 +25,7 @@ class AirplaneController extends AdminController
      */
     public function create()
     {
-        //
+        return view('admin.airplanes.create');
     }
 
     /**
@@ -36,7 +36,11 @@ class AirplaneController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        $data = new App\Airplane;
+        $data->name = $request->name;
+        $data->model_id = $request->model_id;
+        $data->save();
+        return back();
     }
 
     /**
@@ -47,7 +51,8 @@ class AirplaneController extends AdminController
      */
     public function show($id)
     {
-        //
+        $collection = App\Airplane::find($id);
+        return view('admin.airplanes.show', compact('collection'));
     }
 
     /**
@@ -58,7 +63,8 @@ class AirplaneController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $collection = App\Airplane::find($id);
+        return view('admin.airplanes.edit', compact('collection'));
     }
 
     /**
@@ -70,7 +76,11 @@ class AirplaneController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = App\Airplane::find($id);
+        $data->name = $request->name;
+        $data->model_id = $request->model_id;
+        $data->save();
+        return back();
     }
 
     /**
@@ -81,6 +91,7 @@ class AirplaneController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        $data = App\Airplane::find($id)->delete();
+        return redirect()->back();
     }
 }

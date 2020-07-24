@@ -15,7 +15,7 @@ class PriceController extends AdminController
     public function index()
     {
         $collection = App\Price::all()->toArray();
-        return view('admin.prices', compact('collection'));
+        return view('admin.prices.index', compact('collection'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PriceController extends AdminController
      */
     public function create()
     {
-        //
+        return view('admin.prices.create')
     }
 
     /**
@@ -36,7 +36,12 @@ class PriceController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        $data = new App\Price;
+        $data->economic_class_price = $request->economic_class_price;
+        $data->business_class_price = $request->business_class_price;
+        $data->firste_class_price = $request->firste_class_price;
+        $data->save();
+        return back();
     }
 
     /**
@@ -47,7 +52,8 @@ class PriceController extends AdminController
      */
     public function show($id)
     {
-        //
+        $collection = App\Price::find($id);
+        return view('admin.prices.show');
     }
 
     /**
@@ -58,7 +64,8 @@ class PriceController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $collection = App\Price::find($id);
+        return view('admin.prices.edit');
     }
 
     /**
@@ -70,7 +77,12 @@ class PriceController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = App\Price::find($id);
+        $data->economic_class_price = $request->economic_class_price;
+        $data->business_class_price = $request->business_class_price;
+        $data->firste_class_price = $request->firste_class_price;
+        $data->save();
+        return back();
     }
 
     /**
@@ -81,6 +93,7 @@ class PriceController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        App\Price::find($id)->delete();
+        return redirect()->back();
     }
 }

@@ -15,7 +15,7 @@ class AirplaneModelController extends AdminController
     public function index()
     {
         $collection = App\AirplaneModel::all()->toArray();
-        return view('admin.airplane_models', compact('collection'));
+        return view('admin.airplane_models.index', compact('collection'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AirplaneModelController extends AdminController
      */
     public function create()
     {
-        //
+        return view('admin.airplane_models.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class AirplaneModelController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        $data = new App\AirplaneModel;
+        $data->name = $request->name;
+        $data->number_of_economy_class_seats = $request->number_of_economy_class_seats;
+        $data->number_of_businessmen_seats = $request->number_of_businessmen_seats;
+        $data->number_of_first_class_seats = $request->number_of_first_class_seats;
+        $data->save();
+        return back();
     }
 
     /**
@@ -47,7 +53,8 @@ class AirplaneModelController extends AdminController
      */
     public function show($id)
     {
-        //
+        $collection = App\AirplaneModel::find($id);
+        return view('admin.airplane_models.show', compact('collection'));
     }
 
     /**
@@ -58,7 +65,8 @@ class AirplaneModelController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $collection = App\AirplaneModel::find($id);
+        return view('admin.airplane_models.edit', compact('collection'));
     }
 
     /**
@@ -70,7 +78,13 @@ class AirplaneModelController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = App\AirplaneModel::find($id);
+        $data->name = $request->name;
+        $data->number_of_economy_class_seats = $request->number_of_economy_class_seats;
+        $data->number_of_businessmen_seats = $request->number_of_businessmen_seats;
+        $data->number_of_first_class_seats = $request->number_of_first_class_seats;
+        $data->save();
+        return back();
     }
 
     /**
@@ -81,6 +95,7 @@ class AirplaneModelController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        App\AirplaneModel::find($id)->delete();
+        return redirect()->back();
     }
 }
