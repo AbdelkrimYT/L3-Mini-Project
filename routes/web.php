@@ -22,7 +22,13 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'UserController@index')->name('user');
 Route::get('/admin', 'AdminController@index')->name('admin');
+Route::resources([
+    'airplane_models' => 'AirplaneModelController',
+    'airplanes' => 'AirplaneController',
+    'prices' => 'PriceController',
+    'airports' => 'AirportController',
+    'flights' => 'FlightController'
+]);
 
 Route::get('/sadmin', 'SuperadminController@index');
-
 Route::get('/showTest', 'AdminController@showTest');

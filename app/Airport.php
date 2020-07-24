@@ -13,6 +13,16 @@ class Airport extends Model
      */
     protected $fillable = [
         'name',
-        'wilaya'
+        'state'
     ];
+
+    public function flights_case_of_takeoff()
+    {
+        return $this->hasMany('App\Flight', 'take_off_airport_id', 'id');
+    }
+
+    public function flights_case_of_landing()
+    {
+        return $this->hasMany('App\Flight', 'landing_airport_id', 'id');
+    }
 }

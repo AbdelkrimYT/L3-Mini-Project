@@ -32,23 +32,71 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                @auth
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{ asset('admin') }} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false""><i class="fa fa-home"></i>
-                                Dashboard<span class="sr-only">(current)</span></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ asset('airplane_models') }}">Airplane Models</a>
-                                <a class="dropdown-item" href="{{ asset('airplanes') }}">Airplanes</a>
-                                <a class="dropdown-item" href="{{ asset('prices') }}">Prices</a>
-                                <a class="dropdown-item" href="{{ asset('airports') }}">Airports</a>
-                                <a class="dropdown-item" href="{{ asset('flights') }}">Flights</a>
-                            </div>
-                        </li>
+
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ asset('admin') }}"><i class="fa fa-home"></i>
+            Dashboard<span class="sr-only">(current)</span></a>
+    </li>
+    
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ asset('home') }}"><i class="fa fa-home"></i>
+            Home<span class="sr-only">(current)</span></a>
+    </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-envelope-o">
+            <span class="badge badge-danger">11</span>
+          </i>
+          Link
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">
+          <i class="fa fa-envelope-o">
+            <span class="badge badge-warning">11</span>
+          </i>
+          Disabled
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-envelope-o">
+            <span class="badge badge-primary">11</span>
+          </i>
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav ">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-bell">
+            <span class="badge badge-info">11</span>
+          </i>
+          Test
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-globe">
+            <span class="badge badge-success">11</span>
+          </i>
+          Test
+        </a>
+      </li>
+    </ul>
+
                     </ul>
-                @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

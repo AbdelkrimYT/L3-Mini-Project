@@ -38,4 +38,14 @@ class Flight extends Model
     {
         return $this->hasMany('App\Airplane', 'airplane_id', 'id');
     }
+
+    public function airport_case_takeoff()
+    {
+        return $this->belongsTo('App\Airport', 'take_off_airport_id');
+    }
+
+    public function airport_case_landing()
+    {
+        return $this->belongsTo('App\Airport', 'landing_airport_id');
+    }
 }

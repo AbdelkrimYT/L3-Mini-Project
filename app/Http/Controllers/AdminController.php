@@ -29,6 +29,7 @@ class AdminController extends UserController
         return view('admin.index', compact('data'));
     }
     
+    //
     public function showTest()
     {
         $x = App\User::find(7)->tickets;
