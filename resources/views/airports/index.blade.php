@@ -2,11 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="">
-        <div class="">
-            <div class="card">
-                <div class="card-header"><button type="button" class="btn btn-outline-success">Add Air</button>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            <button
+                type="button"
+                class="btn btn-success"
+                onclick="window.location='{{ route('airports.create') }}'">Add
+            </button>
+        </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -25,10 +28,21 @@
                             <th scope="col">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
-                                        <a href="airplane_model/{{ $data['id'] }}" class="btn btn-info mr-1" role="button">Update</a>
+                                        <a
+                                            href="{{ route('airports.show', $data['id']) }}"
+                                            class="btn btn-primary mr-1"
+                                            role="button">Show
+                                        </a>
                                     </li>
                                     <li class="nav-item">
-                                    <form action="{{ '/' }}" method="post">
+                                        <a
+                                            href="{{ route('airports.edit', $data['id']) }}"
+                                            class="btn btn-outline-info mr-1"
+                                            role="button">Update
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <form action="{{ route('airports.destroy', $data['id']) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-outline-danger">Delete</button>
@@ -41,8 +55,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
 </div>
 @endsection
 

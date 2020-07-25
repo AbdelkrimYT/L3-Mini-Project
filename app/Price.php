@@ -12,6 +12,7 @@ class Price extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
         'economic_class_price',
         'business_class_price',
         'firste_class_price'

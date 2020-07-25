@@ -1,57 +1,58 @@
 @extends('layouts.admin_ui')
+
 @section('content')
-@include('admin.airplane_models.modal')
 <div class="container">
     <form
-        action="{{ route('airplane_models.store') }}"
+        action="{{ route('prices.store') }}"
         method="post">
         @csrf
         @method('post')
         <div
             class="form-group">
-            <label>Model Name</label>
+            <label>Price Name</label>
             <input
                 type="text"
                 autocomplete="off"
                 class="form-control"
-                id="name" name="name"
+                id="name"
+                name="name"
                 autofocus>
         </div>
         <div class="form-group">
-            <label>Number of economy class seats</label>
+            <label>Economy class seats price</label>
             <input
                 type="text"
                 autocomplete="off"
                 class="form-control"
-                id="number_of_economy_class_seats"
-                name="number_of_economy_class_seats"
+                id="economic_class_price"
+                name="economic_class_price"
                 placeholder="0">
         </div>
         <div class="form-group">
-            <label>Number of businessmen seats</label>
+            <label>Businessmen seats price</label>
             <input
                 type="text"
                 autocomplete="off"
                 class="form-control"
-                id="number_of_businessmen_seats"
-                name="number_of_businessmen_seats"
+                id="business_class_price"
+                name="business_class_price"
                 autofocus placeholder="0">
         </div>
         <div class="form-group">
-            <label>Number of first class seats</label>
+            <label>First class seats price</label>
             <input
                 type="text"
                 autocomplete="off"
                 class="form-control"
-                id="number_of_first_class_seats"
-                name="number_of_first_class_seats"
+                id="firste_class_price"
+                name="firste_class_price"
                 autofocus placeholder="0">
         </div>
         <div class="modal-footer">
             <button
                 type="button"
                 class="btn btn-light"
-                onclick="window.location='{{ route('airplane_models.index') }}'">Return
+                onclick="window.location='{{ route('prices.index') }}'">Return
             </button>
             <button type="submit" class="btn btn-outline-success">Add</button>
         </div>

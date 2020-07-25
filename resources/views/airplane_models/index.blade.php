@@ -1,7 +1,8 @@
 @extends('layouts.admin_ui')
 
+@include('airplane_models.modal')
+
 @section('content')
-@include('admin.airplane_models.modal')
 <div class="container">
     <div class="">
         <div class="">

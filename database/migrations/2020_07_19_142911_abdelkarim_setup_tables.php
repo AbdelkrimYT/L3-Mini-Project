@@ -50,6 +50,7 @@ class AbdelkarimSetupTables extends Migration
 		
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->double('economic_class_price', 8, 2);
             $table->double('business_class_price', 8, 2);
             $table->double('firste_class_price', 8, 2);

@@ -15,7 +15,7 @@ class AirportController extends AdminController
     public function index()
     {
         $collection = App\Airport::all()->toArray();
-        return view('admin.airports.index', compact('collection'));
+        return view('airports.index', compact('collection'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AirportController extends AdminController
      */
     public function create()
     {
-        //
+        return view('airports.create');
     }
 
     /**
@@ -36,7 +36,11 @@ class AirportController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        $data = new App\Airport;
+        $data->name = $request->name;
+        $data->state = $request->state;
+        $data->save();
+        return back();
     }
 
     /**
@@ -47,7 +51,8 @@ class AirportController extends AdminController
      */
     public function show($id)
     {
-        //
+        $collection = App\Airport::find($id);
+        return view('airports.show', compact('collection'));
     }
 
     /**
@@ -58,7 +63,8 @@ class AirportController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $collection = App\Airport::find($id);
+        return view('airports.edit', compact('collection'));
     }
 
     /**
@@ -70,7 +76,11 @@ class AirportController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = App\Airport::find($id);
+        $data->name = $request->name;
+        $data->state = $request->state;
+        $data->save();
+        return back();
     }
 
     /**
@@ -81,7 +91,7 @@ class AirportController extends AdminController
      */
     public function destroy($id)
     {
-        App\Airport::find($id)->delete;
+        App\Airport::find($id)->delete();
         return redirect()->back();
     }
 }

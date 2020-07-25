@@ -15,7 +15,7 @@ class PriceController extends AdminController
     public function index()
     {
         $collection = App\Price::all()->toArray();
-        return view('admin.prices.index', compact('collection'));
+        return view('prices.index', compact('collection'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PriceController extends AdminController
      */
     public function create()
     {
-        return view('admin.prices.create');
+        return view('prices.create');
     }
 
     /**
@@ -37,6 +37,7 @@ class PriceController extends AdminController
     public function store(Request $request)
     {
         $data = new App\Price;
+        $data->name = $request->name;
         $data->economic_class_price = $request->economic_class_price;
         $data->business_class_price = $request->business_class_price;
         $data->firste_class_price = $request->firste_class_price;
@@ -53,7 +54,7 @@ class PriceController extends AdminController
     public function show($id)
     {
         $collection = App\Price::find($id);
-        return view('admin.prices.show');
+        return view('prices.show', compact('collection'));
     }
 
     /**
@@ -65,7 +66,7 @@ class PriceController extends AdminController
     public function edit($id)
     {
         $collection = App\Price::find($id);
-        return view('admin.prices.edit');
+        return view('prices.edit', compact('collection'));
     }
 
     /**
@@ -78,6 +79,7 @@ class PriceController extends AdminController
     public function update(Request $request, $id)
     {
         $data = App\Price::find($id);
+        $data->name = $request->name;
         $data->economic_class_price = $request->economic_class_price;
         $data->business_class_price = $request->business_class_price;
         $data->firste_class_price = $request->firste_class_price;
