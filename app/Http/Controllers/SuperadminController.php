@@ -38,6 +38,12 @@ class SuperadminController extends AdminController
         return view('admin.sadmin');
     }
 
+    public function showUsers()
+    {
+        $collection = App\User::all();
+        return view('admin.users', compact('collection'));
+    }
+
     public function edit($id)
     {
         $collection = App\User::find($id);
@@ -52,10 +58,10 @@ class SuperadminController extends AdminController
         return back();
     }
 
-    public function show()
+    public function showUser($id)
     {
-        $collection = App\User::all()->toArray();
-        return view('admin.users', compact('collection'));
+        $collection = App\User::find($id);
+        return view('admin.show', compact('collection'));
     }
 
     public function __destroy($id)

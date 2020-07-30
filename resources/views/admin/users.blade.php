@@ -27,7 +27,7 @@
                             <th scope="col">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
-                                        <a href="{{ route('airplane_models.show', $data['id']) }}" class="btn btn-info mr-1" role="button">Show</a>
+                                        <a href="{{ route('superadmin.user.show', $data['id']) }}" class="btn btn-info mr-1" role="button">Show</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('superadmin.user.edit', $data['id']) }}" class="btn btn-info mr-1" role="button">Update</a>

@@ -20,9 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/users', 'SuperadminController@show')->name('superadmin.users');
+Route::get('/users', 'SuperadminController@showUsers')->name('superadmin.users');
 Route::get('/users/{id}/edit', 'SuperadminController@edit')->name('superadmin.user.edit');
 Route::put('/users/{id}', 'SuperadminController@__update')->name('superadmin.user.update');
+Route::get('users/{id}', 'SuperadminController@showUser')->name('superadmin.user.show');
 Route::delete('/destroy/{id}', 'SuperadminController@__destroy')->name('superadmin.user.destroy');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
