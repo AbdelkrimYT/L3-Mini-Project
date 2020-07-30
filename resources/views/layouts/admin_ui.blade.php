@@ -40,6 +40,9 @@
                             <a class="nav-link dropdown-toggle" href="{{ asset('admin') }} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false""><i class="fa fa-home"></i>
                                 Dashboard<span class="sr-only">(current)</span></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @if (Laratrust::hasRole('superadministrator'))
+                                    <a class="dropdown-item" href="{{ asset('users') }}">Users</a>
+                                @endif
                                 <a class="dropdown-item" href="{{ asset('airplane_models') }}">Airplane Models</a>
                                 <a class="dropdown-item" href="{{ asset('airplanes') }}">Airplanes</a>
                                 <a class="dropdown-item" href="{{ asset('prices') }}">Prices</a>
@@ -67,16 +70,27 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                        {{ __('Profile') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('delete-form').submit();">
+                                        {{ __('Delete Account') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
+                                    </form>
+                                    <form id="delete-form" action="{{ route('user.destroy') }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('delete')
                                     </form>
                                 </div>
                             </li>

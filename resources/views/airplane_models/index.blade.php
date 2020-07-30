@@ -4,9 +4,7 @@
 
 @section('content')
 <div class="container">
-    <div class="">
-        <div class="">
-            <div class="card">
+    <div class="card">
                 <div class="card-header">
                     <button
                         type="button"
@@ -34,21 +32,21 @@
                     <tbody>
                         @foreach($collection as $data)
                         <tr>
-                            <th scope="row">{{ $data['id'] }}</th>
-                            <th scope="col">{{ $data['name'] }}</th>
-                            <th scope="col">{{ $data['number_of_economy_class_seats'] }}</th>
-                            <th scope="col">{{ $data['number_of_businessmen_seats'] }}</th>
-                            <th scope="col">{{ $data['number_of_first_class_seats'] }}</th>
+                            <th scope="row">{{ $data->id }}</th>
+                            <th scope="col">{{ $data->name }}</th>
+                            <th scope="col">{{ $data->number_of_economy_class_seats }}</th>
+                            <th scope="col">{{ $data->number_of_businessmen_seats }}</th>
+                            <th scope="col">{{ $data->number_of_first_class_seats }}</th>
                             <th scope="col">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
-                                        <a href="{{ route('airplane_models.show', $data['id']) }}" class="btn btn-info mr-1" role="button">Show</a>
+                                        <a href="{{ route('airplane_models.show', $data->id) }}" class="btn btn-info mr-1" role="button">Show</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('airplane_models.edit', $data['id']) }}" class="btn btn-info mr-1" role="button">Update</a>
+                                        <a href="{{ route('airplane_models.edit', $data->id) }}" class="btn btn-info mr-1" role="button">Update</a>
                                     </li>
                                     <li class="nav-item">
-                                    <form action="{{ route('airplane_models.destroy', $data['id']) }}" method="post">
+                                    <form action="{{ route('airplane_models.destroy', $data->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-outline-danger">Delete</button>
@@ -61,8 +59,6 @@
                     </tbody>
                 </table>
                 {{ $collection->links() }}
-            </div>
-        </div>
     </div>
 </div>
 @endsection

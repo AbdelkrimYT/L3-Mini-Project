@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 
-class AirplaneController extends AdminController
+class AirplaneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,8 @@ class AirplaneController extends AdminController
      */
     public function index()
     {
-        $collection = App\Airplane::all()->toArray();
-        for ($i = 0; $i < sizeof($collection); $i++)
-            $collection[$i]['airplane_model'] = App\AirplaneModel::find($collection[$i]['model_id']);
-        return view('airplanes.index', compact("collection"));
+        $collection = App\Airplane::all();
+        return view('airplanes.index', compact('collection'));
     }
 
     /**
@@ -27,7 +25,7 @@ class AirplaneController extends AdminController
      */
     public function create()
     {
-        $collection = App\AirplaneModel::all()->toArray();
+        $collection = App\AirplaneModel::all();
         return view('airplanes.create', compact('collection'));
     }
 
@@ -67,8 +65,7 @@ class AirplaneController extends AdminController
     public function edit($id)
     {
         $collection = App\Airplane::find($id);
-        $airplane_model_list = App\AirplaneModel::all()->toArray();
-        return view('airplanes.edit', compact('collection', 'airplane_model_list'));
+        return view('airplanes.edit', compact('collection'));
     }
 
     /**

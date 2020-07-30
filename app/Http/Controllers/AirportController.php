@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 
-class AirportController extends AdminController
+class AirportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AirportController extends AdminController
      */
     public function index()
     {
-        $collection = App\Airport::all()->toArray();
+        $collection = App\Airport::all();
         return view('airports.index', compact('collection'));
     }
 

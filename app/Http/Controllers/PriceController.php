@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 
-class PriceController extends AdminController
+class PriceController extends Controller
 {
     /**
      * Display a listing of the resource.

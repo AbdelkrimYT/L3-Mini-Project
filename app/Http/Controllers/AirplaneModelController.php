@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 
-class AirplaneModelController extends AdminController
+class AirplaneModelController extends Controller
 {
     /**
      * Display a listing of the resource.

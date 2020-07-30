@@ -15,13 +15,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'UserController@index')->name('user');
+Route::get('/users', 'SuperadminController@show')->name('superadmin.users');
+Route::get('/users/{id}/edit', 'SuperadminController@edit')->name('superadmin.user.edit');
+Route::put('/users/{id}', 'SuperadminController@__update')->name('superadmin.user.update');
+Route::delete('/destroy/{id}', 'SuperadminController@__destroy')->name('superadmin.user.destroy');
+
 Route::get('/admin', 'AdminController@index')->name('admin');
+//Route::resource('admin', 'AdminController');
+
+Route::get('/home', 'UserController@index')->name('user');
+Route::get('/profile', 'UserController@show')->name('user.profile');
+Route::put('/profile', 'UserController@update')->name('user.update');
+Route::delete('/destroy', 'UserController@destroy')->name('user.destroy');
+
 Route::resources([
     'airplane_models' => 'AirplaneModelController',
     'airplanes' => 'AirplaneController',
@@ -29,6 +40,3 @@ Route::resources([
     'airports' => 'AirportController',
     'flights' => 'FlightController'
 ]);
-
-Route::get('/sadmin', 'SuperadminController@index');
-Route::get('/showTest', 'AdminController@showTest');

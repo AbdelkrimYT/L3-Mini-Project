@@ -16,12 +16,12 @@ class Airport extends Model
         'state'
     ];
 
-    public function flights_case_of_takeoff()
+    public function flights_takeoff()
     {
         return $this->hasMany('App\Flight', 'take_off_airport_id', 'id');
     }
 
-    public function flights_case_of_landing()
+    public function flights_landing()
     {
         return $this->hasMany('App\Flight', 'landing_airport_id', 'id');
     }

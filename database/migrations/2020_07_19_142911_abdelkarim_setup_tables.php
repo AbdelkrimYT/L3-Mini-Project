@@ -14,14 +14,15 @@ class AbdelkarimSetupTables extends Migration
     public function up()
     {
         // Create table for accounts
-        /*Schema::create('credit_card', function (Blueprint $table) {
+        Schema::create('credit_card', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-			$table->string('credit_card')->unique();
-			$table->double('credit', 8, 2)->default(0);
+            $table->string('number')->unique();
+            $table->date('expiration_date');
+			$table->double('amount', 8, 2)->default(0);
 			$table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-        });*/
+        });
 		
         // Create table for airplane models
         Schema::create('airplane_models', function (Blueprint $table) {
@@ -30,6 +31,7 @@ class AbdelkarimSetupTables extends Migration
             $table->integer('number_of_economy_class_seats');
             $table->integer('number_of_businessmen_seats');
             $table->integer('number_of_first_class_seats');
+            $table->string('photo');
             $table->timestamps();
         });
 		
@@ -37,6 +39,7 @@ class AbdelkarimSetupTables extends Migration
             $table->id();
             $table->bigInteger('model_id')->unsigned();
             $table->string('name');
+            $table->string('photo');
             $table->timestamps();
             $table->foreign('model_id')->references('id')->on('airplane_models');
         });
@@ -45,6 +48,7 @@ class AbdelkarimSetupTables extends Migration
             $table->id();
             $table->string('name');
             $table->string('state');
+            $table->string('photo');
             $table->timestamps();
         });
 		
@@ -62,6 +66,7 @@ class AbdelkarimSetupTables extends Migration
             $table->date('date_take_off');
             $table->date('date_landing');
             $table->string('status');
+            $table->string('photo');
             $table->unsignedBigInteger('take_off_airport_id');
             $table->unsignedBigInteger('landing_airport_id');
             $table->unsignedBigInteger('airplane_id');
@@ -101,6 +106,6 @@ class AbdelkarimSetupTables extends Migration
 		Schema::dropIfExists('airports');
 		Schema::dropIfExists('airplanes');
 		Schema::dropIfExists('airplane_models');
-		//Schema::dropIfExists('credit_card');
+		Schema::dropIfExists('credit_card');
     }
 }

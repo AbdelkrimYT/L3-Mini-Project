@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 
-class FlightController extends AdminController
+class FlightController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class FlightController extends AdminController
      */
     public function index()
     {
-        $collection = App\Flight::all()->toArray();
+        $collection = App\Flight::all();
         return view('flights.index', compact('collection'));
     }
 
@@ -71,7 +71,8 @@ class FlightController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $collection = App\Flight::find($id);
+        return view('flights.edit', compact('collection'));
     }
 
     /**
@@ -83,7 +84,16 @@ class FlightController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = App\Flight::find($id);
+        $data->date_take_off = $request->date_take_off;
+        $data->date_landing = $request->date_landing;
+        $data->airplane_id = $request->airplane_id;
+        $data->take_off_airport_id = $request->take_off_airport_id;
+        $data->landing_airport_id = $request->landing_airport_id;
+        $data->price_id = $request->price_id;
+        $data->status = 'att';
+        $data->save();
+        return back();
     }
 
     /**

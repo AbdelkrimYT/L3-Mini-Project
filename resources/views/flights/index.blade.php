@@ -27,19 +27,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($collection as $data)
+                    @foreach($collection as $data)
                         <tr>
-                            <th scope="row">{{ $data['id'] }}</th>
-                            <th scope="col">{{ $data['date_take_off'] }}</th>
-                            <th scope="col">{{ $data['date_landing'] }}</th>
-                            <th scope="col">{{ $data['status'] }}</th>
-                            <th scope="col">{{ $data['take_off_airport_id'] }}</th>
-                            <th scope="col">{{ $data['landing_airport_id'] }}</th>
-                            <th scope="col">{{ $data['airplane_id'] }}</th>
-                            <th scope="col">{{ $data['price_id'] }}</th>
-                            <th scope="col">{{ $data['reserved_economy_class'] }}</th>
-                            <th scope="col">{{ $data['reserved_businessmen'] }}</th>
-                            <th scope="col">{{ $data['reserved_first_class'] }}</th>
+                            <th scope="row">{{ $data->id }}</th>
+                            <th scope="col">{{ $data->date_take_off }}</th>
+                            <th scope="col">{{ $data->date_landing }}</th>
+                            <th scope="col">{{ $data->status }}</th>
+                            <th scope="col">{{ $data->airport_takeoff->name }}</th>
+                            <th scope="col">{{ $data->airport_landing->name }}</th>
+                            <th scope="col">{{ $data->airplane->name }}</th>
+                            <th scope="col">{{ $data->price->name }}</th>
+                            <th scope="col">{{ $data->reserved_economy_class }}</th>
+                            <th scope="col">{{ $data->reserved_businessmen }}</th>
+                            <th scope="col">{{ $data->reserved_first_class }}</th>
                             <th scope="col">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
@@ -57,7 +57,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                    <form action="{{ route('flights.destroy', $data['id']) }}" method="POST">
+                                        <form action="{{ route('flights.destroy', $data['id']) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-outline-danger">Delete</button>
@@ -66,7 +66,7 @@
                                 </ul>
                             </th>
                         </tr>
-                        @endforeach
+                    @endforeach
                     </tbody>
                 </table>
             </div>

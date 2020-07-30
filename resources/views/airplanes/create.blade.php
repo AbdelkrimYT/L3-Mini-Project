@@ -24,7 +24,7 @@
                 name="model_id">
                 @foreach($collection as $data)
                     <option value="" selected disabled hidden>Choose here</option>
-                    <option value="{{ $data['id'] }}">{{ $data['name'] }}</option>
+                    <option value="{{ $data->id }}">{{ $data->name }}</option>
                 @endforeach
             </select>
         </div>

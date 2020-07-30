@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Add new airplane</h1>
-    <form action="{{ route('airplanes.update', $collection['id']) }}" method="POST">
+    <form action="{{ route('airplanes.update', $collection->id) }}" method="POST">
         @csrf
         @method('put')
         <div class="form-group">
@@ -11,7 +11,7 @@
             <input
                 type="text"
                 class="form-control"
-                value="{{ $collection['name'] }}"
+                value="{{ $collection->name }}"
                 id="name"
                 name="name"
                 autocomplete="off"
@@ -23,11 +23,11 @@
                 class="form-control"
                 id="model_id"
                 name="model_id">
-                @foreach($airplane_model_list as $data)
-                    @if ($data['id'] == $collection['model_id'])
-                        <option value="{{ $data['id'] }}" selected>{{ $data['name'] }}</option>
+                @foreach($collection->airplaneModel->get() as  $data)
+                    @if ($data->id == $collection->model_id)
+                        <option value="{{ $data->id }}" selected>{{ $data->name }}</option>
                     @else
-                        <option value="{{ $data['id'] }}">{{ $data['name'] }}</option>
+                        <option value="{{ $data->id }}">{{ $data->name }}</option>
                     @endif
                 @endforeach
             </select>

@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <form
-        action="{{ route('airplane_models.update', $collection['id']) }}"
+        action="{{ route('airplane_models.update', $collection->id ) }}"
         method="post">
         @csrf
         @method('put')
@@ -14,7 +14,7 @@
                 class="form-control"
                 id="name"
                 name="name"
-                value="{{ $collection['name'] }}">
+                value="{{ $collection->name }}">
         </div>
         <div class="form-group">
             <label>Number of economy class seats</label>
@@ -24,7 +24,7 @@
                 class="form-control"
                 id="number_of_economy_class_seats"
                 name="number_of_economy_class_seats"
-                value="{{ $collection['number_of_economy_class_seats'] }}">
+                value="{{ $collection->number_of_economy_class_seats }}">
         </div>
         <div class="form-group">
             <label>Number of businessmen seats</label>
@@ -34,7 +34,7 @@
                 class="form-control"
                 id="number_of_businessmen_seats"
                 name="number_of_businessmen_seats"
-                value="{{ $collection['number_of_businessmen_seats'] }}">
+                value="{{ $collection->number_of_businessmen_seats }}">
         </div>
         <div class="form-group">
             <label>Number of first class seats</label>
@@ -44,7 +44,7 @@
                 class="form-control"
                 id="number_of_first_class_seats"
                 name="number_of_first_class_seats"
-                value="{{ $collection['number_of_first_class_seats'] }}">
+                value="{{ $collection->number_of_first_class_seats }}">
         </div>
         <div class="modal-footer">
             <button
