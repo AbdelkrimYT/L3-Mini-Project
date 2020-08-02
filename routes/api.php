@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 use App\AirplaneModel;
 use App\User;
 Route::get('/api_test', function () {
-    $object = User::all();
+    $object = User::paginate(3);
     return $object;
 });
 

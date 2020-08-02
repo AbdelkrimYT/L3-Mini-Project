@@ -1,10 +1,27 @@
-@extends('layouts.admin_ui')
+@extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <h1>Add new airplane</h1>
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-fighter-jet"></i> Airports</h1>
+        <p>A free and open source Bootstrap 4 admin template</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('airports.index') }}">Airports</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('airports.show', $collection->id) }}">Show</a></li>
+    </ul>
+</div>
+<div class="tile">
+    <h3 class="tile-title">Airports details</h3>
+    <div class="tile-body">
         <div class="form-group">
-            <label>Name</label>
+            <label>Airports Image</label><br>
+            <img class="user-img" src="{{ asset($collection->photo) }}" style="height: 100px;width: 100px;">
+        </div>
+        <div class="form-group">
+            <label>Airports Name</label>
             <input
                 type="text"
                 class="form-control"
@@ -15,7 +32,7 @@
                 placeholder="Name">
         </div>
         <div class="form-group">
-            <label>Model</label>
+            <label>Airports State</label>
             <input
                 type="text"
                 class="form-control"
@@ -25,13 +42,15 @@
                 disabled
                 placeholder="Name">
         </div>
-        <div class="modal-footer">
+        <div class="tile-footer">
             <button
                 type="button"
                 class="btn btn-light"
-                onclick="window.location='{{ route('airports.index') }}'">Go back
+                onclick="window.location='{{ route('airports.index') }}'">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>Go back
             </button>
         </div>
+    </div>
 </div>
 @endsection
 

@@ -40,7 +40,7 @@ class SuperadminController extends AdminController
 
     public function showUsers()
     {
-        $collection = App\User::all();
+        $collection = App\User::paginate(5);
         return view('admin.users', compact('collection'));
     }
 

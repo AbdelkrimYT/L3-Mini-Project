@@ -20,6 +20,7 @@ class AirplaneModel extends Model
         'number_of_economy_class_seats',
         'number_of_businessmen_seats',
         'number_of_first_class_seats',
+        'photo'
     ];
     
     /*protected $guarded=[

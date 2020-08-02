@@ -13,7 +13,8 @@ class Airport extends Model
      */
     protected $fillable = [
         'name',
-        'state'
+        'state',
+        'photo'
     ];
 
     public function flights_takeoff()

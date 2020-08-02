@@ -71,11 +71,6 @@ class AbdelkarimSetupTables extends Migration
             $table->unsignedBigInteger('landing_airport_id');
             $table->unsignedBigInteger('airplane_id');
             $table->unsignedBigInteger('price_id');
-            
-            $table->integer('reserved_economy_class')->default(0);
-            $table->integer('reserved_businessmen')->default(0);
-            $table->integer('reserved_first_class')->default(0);
-
             $table->timestamps();
             $table->foreign('airplane_id')->references('id')->on('airplanes');
             $table->foreign('take_off_airport_id')->references('id')->on('airports');
@@ -87,6 +82,9 @@ class AbdelkarimSetupTables extends Migration
             $table->id();
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('flight_id')->unsigned();
+            $table->integer('reserved_economy_class')->default(0);
+            $table->integer('reserved_businessmen_class')->default(0);
+            $table->integer('reserved_first_class')->default(0);
             $table->timestamps();
             $table->foreign('client_id')->references('id')->on('users');
             $table->foreign('flight_id')->references('id')->on('flights');

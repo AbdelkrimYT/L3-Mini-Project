@@ -17,7 +17,8 @@ class Airplane extends Model
     
     protected $fillable = [
         'model_id',
-        'name'
+        'name',
+        'photo'
     ];
     
     

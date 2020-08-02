@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App;
 
 class AirplaneModelController extends Controller
@@ -42,6 +43,12 @@ class AirplaneModelController extends Controller
         $data->number_of_economy_class_seats = $request->number_of_economy_class_seats;
         $data->number_of_businessmen_seats = $request->number_of_businessmen_seats;
         $data->number_of_first_class_seats = $request->number_of_first_class_seats;
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }
@@ -84,6 +91,12 @@ class AirplaneModelController extends Controller
         $data->number_of_economy_class_seats = $request->number_of_economy_class_seats;
         $data->number_of_businessmen_seats = $request->number_of_businessmen_seats;
         $data->number_of_first_class_seats = $request->number_of_first_class_seats;
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }
@@ -99,4 +112,5 @@ class AirplaneModelController extends Controller
         App\AirplaneModel::find($id)->delete();
         return redirect()->back();
     }
+
 }

@@ -57,6 +57,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $id = Auth::user()->id;
+        $request->except('password');
         $data = App\User::find($id);
         $data->name = $request->name;
         $data->email = $request->email;

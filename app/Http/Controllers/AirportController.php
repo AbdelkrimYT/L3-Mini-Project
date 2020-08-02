@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App;
 
 class AirportController extends Controller
@@ -39,6 +40,12 @@ class AirportController extends Controller
         $data = new App\Airport;
         $data->name = $request->name;
         $data->state = $request->state;
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }
@@ -79,6 +86,12 @@ class AirportController extends Controller
         $data = App\Airport::find($id);
         $data->name = $request->name;
         $data->state = $request->state;
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }

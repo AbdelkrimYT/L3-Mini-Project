@@ -18,10 +18,7 @@ class Flight extends Model
         'take_off_airport_id',
         'landing_airport_id',
         'airplane_id',
-        'price_id',
-        'reserved_economy_class',
-        'reserved_businessmen',
-        'reserved_first_class'
+        'price_id'
     ];
     
     public function price()

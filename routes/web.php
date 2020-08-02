@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/vail', function() {
+    return view('layouts.admin');
+});
+
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -26,7 +30,7 @@ Route::put('/users/{id}', 'SuperadminController@__update')->name('superadmin.use
 Route::get('users/{id}', 'SuperadminController@showUser')->name('superadmin.user.show');
 Route::delete('/destroy/{id}', 'SuperadminController@__destroy')->name('superadmin.user.destroy');
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 //Route::resource('admin', 'AdminController');
 
 Route::get('/home', 'UserController@index')->name('user');

@@ -13,7 +13,10 @@ class Ticket extends Model
      */
     protected $fillable = [
         'client_id',
-        'flight_id'
+        'flight_id',
+        'reserved_economy_class',
+        'reserved_businessmen_class',
+        'reserved_first_class'
     ];
     
     public function price()

@@ -25,8 +25,10 @@ class AdminController extends UserController
      */
     public function index()
     {
-        $data = App\AirplaneModel::all()->toArray();
-        return view('admin.index', compact('data'));
+        $collection['users'] = count(App\User::all());
+        $collection['airplanes'] = count(App\Airplane::all());
+        $collection['flights'] = count(App\Flight::all());
+        return view('admin.index', compact('collection'));
     }
     
     //

@@ -1,4 +1,4 @@
-@extends('layouts.admin_ui')
+@extends('layouts.admin')
 
 @section('content')
 <button

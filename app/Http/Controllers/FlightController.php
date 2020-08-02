@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App;
 
 class FlightController extends Controller
@@ -48,6 +49,12 @@ class FlightController extends Controller
         $data->landing_airport_id = $request->landing_airport_id;
         $data->price_id = $request->price_id;
         $data->status = 'att';
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }
@@ -60,7 +67,11 @@ class FlightController extends Controller
      */
     public function show($id)
     {
-        //
+        $collection = App\Flight::find($id);
+        $collection['reserved_economy_class'] = App\Ticket::all()->where('flight_id', '=', $id)->sum('reserved_economy_class');
+        $collection['reserved_businessmen_class'] = App\Ticket::all()->where('flight_id', '=', $id)->sum('reserved_businessmen_class');
+        $collection['reserved_first_class'] = App\Ticket::all()->where('flight_id', '=', $id)->sum('reserved_first_class');
+        return view('flights.show', compact('collection'));
     }
 
     /**
@@ -72,6 +83,10 @@ class FlightController extends Controller
     public function edit($id)
     {
         $collection = App\Flight::find($id);
+        $collection['airplanes'] = App\Airplane::all();
+        $collection['airports_takeoff'] = App\Airport::all();
+        $collection['airports_landing'] = App\Airport::all();
+        $collection['prices'] = App\Price::all();
         return view('flights.edit', compact('collection'));
     }
 
@@ -91,7 +106,13 @@ class FlightController extends Controller
         $data->take_off_airport_id = $request->take_off_airport_id;
         $data->landing_airport_id = $request->landing_airport_id;
         $data->price_id = $request->price_id;
-        $data->status = 'att';
+        $data->status = $request->status;
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }

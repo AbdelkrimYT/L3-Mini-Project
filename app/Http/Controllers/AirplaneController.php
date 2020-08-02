@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App;
 
 class AirplaneController extends Controller
@@ -40,6 +41,12 @@ class AirplaneController extends Controller
         $data = new App\Airplane;
         $data->name = $request->name;
         $data->model_id = $request->model_id;
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }
@@ -80,6 +87,12 @@ class AirplaneController extends Controller
         $data = App\Airplane::find($id);
         $data->name = $request->name;
         $data->model_id = $request->model_id;
+        if ($request->hasFile('photo'))
+        {
+            if (Storage::exists($data->photo))
+                Storage::delete($data->photo);
+            $data->photo = $request->file('photo')->store('public');
+        }
         $data->save();
         return back();
     }
