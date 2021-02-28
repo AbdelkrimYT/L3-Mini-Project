@@ -18,7 +18,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/vail', function() {
-    return view('layouts.admin');
+    return view('layouts.user');
 });
 
 Auth::routes();
@@ -37,11 +37,16 @@ Route::get('/home', 'UserController@index')->name('user');
 Route::get('/profile', 'UserController@show')->name('user.profile');
 Route::put('/profile', 'UserController@update')->name('user.update');
 Route::delete('/destroy', 'UserController@destroy')->name('user.destroy');
+Route::get('/search', 'UserController@search')->name('user.search');
+Route::post('/search', 'UserController@search')->name('user.search.post');
+Route::get('/home/{id}/buying', 'UserController@show_buying_form')->name('user.show.buying');
+Route::post('/home/buying', 'UserController@buying')->name('user.buying');
 
 Route::resources([
     'airplane_models' => 'AirplaneModelController',
     'airplanes' => 'AirplaneController',
     'prices' => 'PriceController',
     'airports' => 'AirportController',
-    'flights' => 'FlightController'
+    'flights' => 'FlightController',
+    'tickets' => 'TicketController'
 ]);

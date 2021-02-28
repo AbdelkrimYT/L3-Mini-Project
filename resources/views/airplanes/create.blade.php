@@ -3,7 +3,7 @@
 @section('content')
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-fighter-jet"></i> Airplane</h1>
+        <h1><i class="fa fa-plane"></i> Airplane</h1>
         <p>A free and open source Bootstrap 4 admin template</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
@@ -16,10 +16,7 @@
 <div class="tile">
     <h3 class="tile-title">Add new airplane</h3>
     <div class="tile-body">
-        <form
-            action="{{ route('airplanes.store') }}"
-            method="POST"
-            enctype="multipart/form-data">
+        <form action="{{ route('airplanes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label>Name</label>
@@ -61,4 +58,3 @@
     </div>
 </div>
 @endsection
-

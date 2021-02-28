@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/flights', 'ApiController@index');
+
 use App\AirplaneModel;
 use App\User;
 Route::get('/api_test', function () {

@@ -12,6 +12,7 @@ class Flight extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
         'date_take_off',
         'date_landing',
         'status',

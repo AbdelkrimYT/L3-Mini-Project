@@ -56,6 +56,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->hasRole('superadministrator') || Auth::user()->hasRole('administrator'))
+                                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                            dashboard
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('user.profile') }}">
                                         {{ __('Profile') }}
                                     </a>

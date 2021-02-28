@@ -15,7 +15,7 @@ class FlightController extends Controller
      */
     public function index()
     {
-        $collection = App\Flight::all();
+        $collection = App\Flight::paginate(10);
         return view('flights.index', compact('collection'));
     }
 
@@ -42,6 +42,7 @@ class FlightController extends Controller
     public function store(Request $request)
     {
         $data = new App\Flight;
+        $data->name = $request->name;
         $data->date_take_off = $request->date_take_off;
         $data->date_landing = $request->date_landing;
         $data->airplane_id = $request->airplane_id;
@@ -100,6 +101,7 @@ class FlightController extends Controller
     public function update(Request $request, $id)
     {
         $data = App\Flight::find($id);
+        $data->name = $request->name;
         $data->date_take_off = $request->date_take_off;
         $data->date_landing = $request->date_landing;
         $data->airplane_id = $request->airplane_id;

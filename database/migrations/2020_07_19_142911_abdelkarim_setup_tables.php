@@ -14,16 +14,16 @@ class AbdelkarimSetupTables extends Migration
     public function up()
     {
         // Create table for accounts
-        Schema::create('credit_card', function (Blueprint $table) {
+        Schema::create('credit_cards', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('number')->unique();
             $table->date('expiration_date');
-			$table->double('amount', 8, 2)->default(0);
-			$table->timestamps();
+            $table->double('amount', 8, 2)->default(0);
+            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
-		
+        
         // Create table for airplane models
         Schema::create('airplane_models', function (Blueprint $table) {
             $table->id();
@@ -34,8 +34,8 @@ class AbdelkarimSetupTables extends Migration
             $table->string('photo');
             $table->timestamps();
         });
-		
-		Schema::create('airplanes', function (Blueprint $table) {
+        
+        Schema::create('airplanes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('model_id')->unsigned();
             $table->string('name');
@@ -43,7 +43,7 @@ class AbdelkarimSetupTables extends Migration
             $table->timestamps();
             $table->foreign('model_id')->references('id')->on('airplane_models');
         });
-		
+        
         Schema::create('airports', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -51,7 +51,7 @@ class AbdelkarimSetupTables extends Migration
             $table->string('photo');
             $table->timestamps();
         });
-		
+        
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -60,9 +60,10 @@ class AbdelkarimSetupTables extends Migration
             $table->double('firste_class_price', 8, 2);
             $table->timestamps();
         });
-		
+        
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->date('date_take_off');
             $table->date('date_landing');
             $table->string('status');
@@ -77,7 +78,7 @@ class AbdelkarimSetupTables extends Migration
             $table->foreign('landing_airport_id')->references('id')->on('airports');
             $table->foreign('price_id')->references('id')->on('prices');
         });
-		
+        
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('client_id')->unsigned();
@@ -98,12 +99,12 @@ class AbdelkarimSetupTables extends Migration
      */
     public function down()
     {
-		Schema::dropIfExists('tickets');
-		Schema::dropIfExists('flights');
-		Schema::dropIfExists('prices');
-		Schema::dropIfExists('airports');
-		Schema::dropIfExists('airplanes');
-		Schema::dropIfExists('airplane_models');
-		Schema::dropIfExists('credit_card');
+        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('flights');
+        Schema::dropIfExists('prices');
+        Schema::dropIfExists('airports');
+        Schema::dropIfExists('airplanes');
+        Schema::dropIfExists('airplane_models');
+        Schema::dropIfExists('credit_card');
     }
 }

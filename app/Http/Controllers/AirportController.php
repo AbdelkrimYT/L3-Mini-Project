@@ -15,7 +15,7 @@ class AirportController extends Controller
      */
     public function index()
     {
-        $collection = App\Airport::all();
+        $collection = App\Airport::paginate(10);
         return view('airports.index', compact('collection'));
     }
 

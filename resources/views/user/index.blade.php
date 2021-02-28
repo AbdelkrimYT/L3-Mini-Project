@@ -1,42 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    {{ __('User Dashboard') }}
+    <div class="container">
+        <form action="{{ route('user.search.post') }}" method="POST">
+            @csrf
+            <div class="form-row">
+                <div class="col-md-3 mb-3">
+                    <label for="from">From</label>
+                    <select class="custom-select" name="take_off_airport_id" id="from" value="{{ old('take_off_airport_id') }}">
+                        <option selected>Select your location</option>
+                        @foreach($airport as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }} / {{ $item->state }}</option>
+                        @endforeach
+                    </select>
                 </div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    
-                    @foreach ($collection as $item)
-                        <div class="card" style="width: 18rem;">
-                            <img 
-                                class="card-img-top"
-                                src="data:image/jpeg;base64,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"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $item->date_take_off }}</h5>
-                                <p class="card-text"> BC: {{ $item->price->name }} </p>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-secondary">Economic class</button>
-                                    <button type="button" class="btn btn-secondary">Business class</button>
-                                    <button type="button" class="btn btn-secondary">Firste class</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
+                <div class="col-md-3 mb-3">
+                    <label for="to">To</label>
+                    <select class="custom-select" name="landing_airport_id" id="to" value="{{ old('landing_airport_id') }}">
+                        <option>Select the destination</option>
+                        @foreach($airport as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }} / {{ $item->state }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label for="date_takeoff">Date</label>
+                    <input class="form-control"  type="date" name="date_takeoff" id="date_takeoff" value="{{ old('date_takeoff') }}">
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label for="date_takeoff_max">To</label>
+                    <input class="form-control"  type="date" name="date_takeoff_max" id="date_takeoff_max" value="{{ old('date_takeoff_max') }}">
+                </div>
+                <div class="col-md-1 mb-3 d-flex d-inline-flex">
+                    <button type="submit" class="btn btn-primary">
+                        Search
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+            @foreach ($collection as $index => $item)
+                <div class="col-sm">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ $item->photo  }}" alt="Image" style="height: 20em">
+                        <div class="card-body">
+                            <h5 class="card-title">Name: {{ $item->name }}</h5>
+                            <p class="card-text">
+                                <label>
+                                    From {{ $item->airport_takeoff->name }} ({{ $item->airport_takeoff->state }})
+                                    to {{ $item->airport_landing->name }}  ({{ $item->airport_landing->state }})
+                                </label>
+                                <label>Airplane: {{ $item->airplane->name }}</label>
+                                <h5>Price</h5>
+                                Economic ${{ $item->price->economic_class_price }}<br>
+                                Business ${{ $item->price->business_class_price }}<br>
+                                Firste ${{ $item->price->firste_class_price }}<br>
+                            </p>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-primary" type="" href="{{ route('user.show.buying', $item->id) }}">
+                                    <span>
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-credit-card" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+                                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+                                        </svg>
+                                    </span> Buying
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if ($index % 2 == 0 and $index >= 2)
+                    </div>
+                    <br>
+                    <div class="row">
+                @endif
+            @endforeach
+        </div>
+            {{ $collection->links()  }}
+    </div>
 @endsection

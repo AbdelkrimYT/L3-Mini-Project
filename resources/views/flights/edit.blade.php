@@ -3,7 +3,7 @@
 @section('content')
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-fighter-jet"></i> Flights</h1>
+        <h1><i class="fa fa-exchange"></i> Flights</h1>
         <p>A free and open source Bootstrap 4 admin template</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
@@ -22,6 +22,10 @@
             enctype="multipart/form-data">
             @csrf
             @method('put')
+            <div class="form-group">
+                <label>Flight Name</label>
+                <input type="text" autocomplete="off" class="form-control" id="name" name="name" autofocus value="{{ $collection->name }}">
+            </div>
             <div class="form-group">
                 <label>Date takeoff</label>
                 <input

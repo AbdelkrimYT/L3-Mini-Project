@@ -3,7 +3,7 @@
 @section('content')
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-fighter-jet"></i> Flights</h1>
+        <h1><i class="fa fa-exchange"></i> Flights</h1>
         <p>A free and open source Bootstrap 4 admin template</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
@@ -21,6 +21,7 @@
             <img class="user-img" src="{{ asset($collection->photo) }}" style="height: 100px;width: 100px;">
         </div>
         <ul class="list-group">
+            <li class="list-group-item">Name: {{ $collection->name }}</li>
             <li class="list-group-item">Date takeoff: {{ $collection->date_take_off }}</li>
             <li class="list-group-item">Date landing: {{ $collection->date_landing }}</li>
             <li class="list-group-item">Status: {{ $collection->status }}</li>

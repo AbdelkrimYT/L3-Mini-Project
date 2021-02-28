@@ -14,7 +14,7 @@ class PriceController extends Controller
      */
     public function index()
     {
-        $collection = App\Price::all()->toArray();
+        $collection = App\Price::paginate(10);
         return view('prices.index', compact('collection'));
     }
 
@@ -53,8 +53,7 @@ class PriceController extends Controller
      */
     public function show($id)
     {
-        $collection = App\Price::find($id);
-        return view('prices.show', compact('collection'));
+        //
     }
 
     /**

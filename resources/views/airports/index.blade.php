@@ -3,7 +3,7 @@
 @section('content')
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-fighter-jet"></i> Airports</h1>
+        <h1><i class="fa fa-flag"></i> Airports</h1>
         <p>A free and open source Bootstrap 4 admin template</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
@@ -70,6 +70,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $collection->links() }}
             </div>
         </div>
     </div>

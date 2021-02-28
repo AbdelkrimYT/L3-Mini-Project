@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Ticket', 'client_id', 'id');
     }
+
+    public function credit_card()
+    {
+        return $this->hasOne('App\CreditCard', 'user_id', 'id');
+    }
 }

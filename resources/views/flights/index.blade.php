@@ -3,7 +3,7 @@
 @section('content')
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-fighter-jet"></i> Flights</h1>
+        <h1><i class="fa fa-exchange"></i> Flights</h1>
         <p>A free and open source Bootstrap 4 admin template</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
@@ -27,6 +27,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Date takeoff</th>
                         <th scope="col">Date landing</th>
                         <th scope="col">Status</th>
@@ -42,6 +43,7 @@
                     @foreach($collection as $data)
                     <tr>
                         <th scope="row">{{ $data->id }}</th>
+                        <th scope="row">{{ $data->name }}</th>
                         <th scope="col">{{ $data->date_take_off }}</th>
                         <th scope="col">{{ $data->date_landing }}</th>
                         <th scope="col">{{ $data->status }}</th>
@@ -81,6 +83,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $collection->links() }}
         </div>
     </div>
 </div>

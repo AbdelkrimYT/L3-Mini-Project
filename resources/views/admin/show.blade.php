@@ -19,7 +19,7 @@
     <div class="col-md-12">
         <div class="profile">
             <div class="info">
-                <img class="user-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg">
+                <img class="user-img" src="{{ asset($collection->avatar) }}">
                 <h4>{{ $collection->name }}</h4>
                 <p>FrontEnd Developer</p>
             </div>

@@ -1,14 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <form
-        action="{{ route('prices.store') }}"
-        method="post">
-        @csrf
-        @method('post')
-        <div
-            class="form-group">
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-money"></i> Price</h1>
+        <p>A free and open source Bootstrap 4 admin template</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('prices.index') }}">Prices</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('prices.create') }}">Add</a></li>
+    </ul>
+</div>
+<div class="tile">
+    <h3 class="tile-title">Add new price</h3>
+    <div class="tile-body">
+        <form action="{{ route('prices.store') }}" method="POST">
+            @csrf
+            <div class="form-group">
             <label>Price Name</label>
             <input
                 type="text"
@@ -48,14 +58,17 @@
                 name="firste_class_price"
                 autofocus placeholder="0">
         </div>
-        <div class="modal-footer">
-            <button
-                type="button"
-                class="btn btn-light"
-                onclick="window.location='{{ route('prices.index') }}'">Return
-            </button>
-            <button type="submit" class="btn btn-outline-success">Add</button>
-        </div>
-    </form>
+            <div class="tile-footer">
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="window.location='{{ route('prices.index') }}'">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>Go back
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>Save change</button>
+            </div>
+        </form>
+    </div>
 </div>
 @endsection

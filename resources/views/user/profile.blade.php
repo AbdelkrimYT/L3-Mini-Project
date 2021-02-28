@@ -16,16 +16,11 @@
         <input type="email" value="{{ Auth::user()->email }}" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
 
-        <input type="file" name="photo" id="photo">
-        <input type="submit" value="Upload Image" name="submit">
+        <div class="form-group">
+            <input type="file" name="photo" id="photo">
+            <input type="submit" value="Upload Image" name="submit">
+            <img src="{{ Auth::user()->avatar }}" alt="..." class="img-thumbnail" width="100%">
+        </div>
     </form>
-
-    <img src="{{ Auth::user()->avatar }}" alt="..." class="img-thumbnail">
-    name {{ Auth::user()->name }}<br>
-    email {{ Auth::user()->email }}<br>
-    {{ Auth::user()->password }}<br>
-    ID {{ $id }}<br>
-    Role user_id: {{ $role->user_id }}<br>
-    Role role_id: {{ $role->role_id }}<br>
 </div>
 @endsection
